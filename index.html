@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="STier Customs — premium starlight headliner installs in London. Book a slot, view packages, and pay deposit after confirmation." />
+  <title>STier Customs | Starlight Headliners (London)</title>
+
+  <style>
+    :root{
+      --bg:#06070a;
+      --bg2:#0b0d12;
+      --card:rgba(255,255,255,.05);
+      --card2:rgba(255,255,255,.07);
+      --line:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.55);
+      --gold:#FFD48A;
+      --purple:rgba(140,90,255,.35);
+      --ok:#25D366;
+      --shadow: 0 0 0 1px rgba(255,255,255,.09), 0 20px 80px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius2:24px;
+      --max:1150px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background: radial-gradient(circle at 12% 18%, rgba(255, 214, 138, 0.16), transparent 45%),
+                  radial-gradient(circle at 82% 28%, rgba(140, 90, 255, 0.14), transparent 48%),
+                  radial-gradient(circle at 40% 88%, rgba(255, 255, 255, 0.06), transparent 42%),
+                  linear-gradient(180deg, rgba(255,255,255,0.04), transparent 35%, rgba(255,255,255,0.03)),
+                  var(--bg);
+      min-height:100vh;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width:var(--max); margin:0 auto; padding:0 18px; }
+
+    /* Topbar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.65);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; min-width: 210px; }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, var(--gold), rgba(255,255,255,.35));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 16px 50px rgba(255, 214, 138, .10);
+    }
+    .brand .name{ font-weight:700; line-height:1.05; }
+    .brand .tag{ font-size:12px; color:var(--muted2); margin-top:2px; }
+
+    .nav{ display:none; gap:18px; flex-wrap:wrap; }
+    .nav a{ font-size:14px; color:var(--muted); }
+    .nav a:hover{ color:var(--text); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      border-radius:14px;
+      padding:10px 14px;
+      font-weight:650;
+      border:1px solid transparent;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn-primary{
+      background: var(--gold);
+      color:#0a0a0a;
+      border-color: rgba(0,0,0,.15);
+    }
+    .btn-primary:hover{ filter:brightness(1.06); }
+    .btn-ghost{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14);
+      color: var(--text);
+    }
+    .btn-ghost:hover{ background: rgba(255,255,255,.09); }
+
+    .hamburger{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+    }
+    .hamburger:hover{ background: rgba(255,255,255,.09); }
+    .hamburger svg{ opacity:.85; }
+
+    /* Mobile menu */
+    .mobile-menu{
+      display:none;
+      border-top:1px solid var(--line);
+      padding:10px 0 16px;
+    }
+    .mobile-menu a{
+      display:block;
+      padding:10px 10px;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .mobile-menu a:hover{ background: rgba(255,255,255,.06); color:var(--text); }
+
+    /* Hero */
+    .hero{ padding:48px 0 22px; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding:7px 12px;
+      font-size:12px; color: var(--muted);
+    }
+    h1{
+      margin:14px 0 0;
+      font-size: 46px;
+      line-height:1.08;
+      letter-spacing:-.02em;
+    }
+    .accent{ color: var(--gold); }
+    .lead{
+      margin:14px 0 0;
+      color: var(--muted);
+      font-size: 16.5px;
+      line-height:1.6;
+      max-width: 54ch;
+    }
+    .hero-actions{ margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; }
+
+    .hero-stats{ margin-top:16px; display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+    .card{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .glow{ box-shadow: var(--shadow); }
+    .stat .big{ font-size:18px; font-weight:750; }
+    .stat .small{ font-size:12px; color:var(--muted2); margin-top:6px; }
+
+    .visual{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.35);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .visual-box{
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(circle at 20% 25%, rgba(255,214,138,0.18), transparent 45%),
+        radial-gradient(circle at 80% 35%, rgba(140,90,255,0.15), transparent 48%),
+        radial-gradient(circle at 50% 70%, rgba(255,255,255,0.10), transparent 42%),
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 30%, rgba(255,255,255,.03));
+      position:relative;
+      overflow:hidden;
+    }
+    .visual-box::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle, rgba(255,255,255,.18), transparent 55%);
+      opacity:.12;
+      animation: float 8s ease-in-out infinite;
+      transform: translate(0,0);
+    }
+    @keyframes float{
+      0%,100%{ transform: translate(-2%, -1%); }
+      50%{ transform: translate(2%, 1%); }
+    }
+    .visual-note{ margin-top:12px; color:var(--muted2); font-size:13px; }
+
+    /* Sections */
+    section.block{ padding:26px 0; }
+    .section-head{ margin-bottom:14px; }
+    .section-head h2{ margin:0; font-size:26px; letter-spacing:-.01em; }
+    .section-head p{ margin:8px 0 0; color:var(--muted); }
+
+    .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+    .grid-2{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+    .muted{ color:var(--muted); }
+
+    /* Products */
+    .price{ color:var(--gold); font-weight:750; margin-top:6px; }
+    ul.features{ margin:12px 0 0; padding:0; list-style:none; }
+    ul.features li{
+      display:flex; gap:10px;
+      color:var(--muted);
+      font-size: 14px;
+      line-height:1.5;
+      margin:10px 0;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:999px;
+      background: rgba(255,255,255,.35);
+      margin-top:6px;
+      flex:0 0 auto;
+    }
+    .badge{
+      display:inline-flex;
+      font-size:12px;
+      background: var(--gold);
+      color:#0a0a0a;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:800;
+    }
+
+    /* Booking form */
+    form{ display:grid; gap:12px; }
+    label{ font-size:13px; color: rgba(255,255,255,.82); display:block; margin-bottom:6px; }
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.35);
+      color: var(--text);
+      outline:none;
+      font-family:inherit;
+    }
+    input:focus, select:focus, textarea:focus{ border-color: rgba(255,255,255,.24); }
+    textarea{ resize:vertical; min-height:110px; }
+    .form-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+    .tiny{ font-size:12px; color: var(--muted2); line-height:1.5; }
+
+    /* FAQ */
+    details{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:12px 14px;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight:700;
+      color: rgba(255,255,255,.88);
+    }
+    details p{ margin:10px 0 0; color: var(--muted); line-height:1.6; }
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      background: rgba(0,0,0,.5);
+      padding:28px 0 40px;
+      margin-top:22px;
+    }
+    .footer-grid{ display:grid; grid-template-columns: 1.2fr .8fr; gap:14px; }
+    .links{ display:flex; gap:36px; flex-wrap:wrap; }
+    .links a{ display:block; color: var(--muted); font-size:14px; margin:8px 0; }
+    .links a:hover{ color: var(--text); }
+    .disclaimer{ margin-top:14px; font-size:12px; color: rgba(255,255,255,.45); line-height:1.5; }
+
+    /* WhatsApp floating button */
+    .wa{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius: 999px;
+      background: var(--ok);
+      color:#08120b;
+      font-weight:850;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border:1px solid rgba(0,0,0,.10);
+    }
+    .wa:hover{ filter:brightness(1.06); }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      h1{ font-size: 40px; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .nav{ display:none !important; }
+    }
+    @media (min-width: 981px){
+      .nav{ display:flex; }
+      .hamburger{ display:none; }
+      .mobile-menu{ display:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div class="name">STier Customs</div>
+            <div class="tag">Starlight Headliners • London</div>
+          </div>
+        </a>
+
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#products">Products</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#booking">Booking</a>
+          <a href="#deposit">Deposit</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn btn-primary" href="#booking">Book now</a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Booking</a>
+        <a href="#deposit">Deposit</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="pill">West London / Heathrow area • Mobile / Workshop • Clean OEM finish</div>
+          <h1>
+            Premium <span class="accent">Starlight Headliners</span><br/>
+            that make your car feel unreal.
+          </h1>
+          <p class="lead">
+            STier Customs installs clean, factory-style starlight headliners with custom patterns,
+            RGB options, and add-ons like shooting stars. Start from <b>£250</b>.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#booking">Request an appointment</a>
+            <a class="btn btn-ghost" href="#products">View packages</a>
+            <a class="btn btn-ghost" href="#deposit">Pay deposit</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="card glow stat">
+              <div class="big">OEM+</div>
+              <div class="small">Tidy finish</div>
+            </div>
+            <div class="card glow stat">
+              <div class="big">From £250</div>
+              <div class="small">Packages</div>
+            </div>
+            <div class="card glow stat">
+              <div class="big">Custom</div>
+              <div class="small">Your pattern</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Hero visual">
+          <div class="visual-box"></div>
+          <div class="visual-note">
+            Replace this placeholder with your real install photos later (I’ll show you how).
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Services -->
+  <section id="services" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>What we install</h2>
+        <p>Premium options, clean finish, and proper wiring.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="margin:0 0 8px;">Starlight Headliners</h3>
+          <p class="muted" style="margin:0;">Even star spacing and a factory-style look, tailored to your car.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px;">Shooting Stars</h3>
+          <p class="muted" style="margin:0;">Animated shooting-star effect available as an add-on.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px;">RGB / App Control</h3>
+          <p class="muted" style="margin:0;">Brightness, colours, and modes — set it how you want.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>Products & Packages</h2>
+        <p>Choose a package, then add extras. Prices can vary by vehicle/headliner size.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="margin:0;">Starter</h3>
+          <div class="price">from £250</div>
+          <ul class="features">
+            <li><span class="dot"></span><span>Clean OEM look</span></li>
+            <li><span class="dot"></span><span>Warm white or RGB</span></li>
+            <li><span class="dot"></span><span>Ideal for smaller headliners</span></li>
+          </ul>
+        </div>
+
+        <div class="card glow">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;">
+            <h3 style="margin:0;">Premium</h3>
+            <span class="badge">Most popular</span>
+          </div>
+          <div class="price">from £350</div>
+          <ul class="features">
+            <li><span class="dot"></span><span>Denser starlight look</span></li>
+            <li><span class="dot"></span><span>RGB / App control options</span></li>
+            <li><span class="dot"></span><span>Best value for most cars</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0;">Ultimate</h3>
+          <div class="price">from £450</div>
+          <ul class="features">
+            <li><span class="dot"></span><span>High density luxury look</span></li>
+            <li><span class="dot"></span><span>Custom pattern options</span></li>
+            <li><span class="dot"></span><span>Maximum coverage</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="height:12px;"></div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="margin:0;">Add-on: Shooting Stars</h3>
+          <div class="price">+£120</div>
+          <p class="muted" style="margin:10px 0 0;">Animated shooting-star effect (optional).</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0;">Add-on: Twinkle Module</h3>
+          <div class="price">+£60</div>
+          <p class="muted" style="margin:10px 0 0;">Twinkle modes + smoother look.</p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0;">Add-on: Custom Logo/Constellation</h3>
+          <div class="price">+£80</div>
+          <p class="muted" style="margin:10px 0 0;">Your design, your placement.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="#booking">Request appointment</a>
+        <a class="btn btn-ghost" href="#deposit">Pay deposit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>Gallery</h2>
+        <p>Placeholders for now — swap these with your real installs.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card glow">
+          <div class="visual-box" style="aspect-ratio:4/3;"></div>
+          <div class="visual-note">Before/After #1</div>
+        </div>
+        <div class="card glow">
+          <div class="visual-box" style="aspect-ratio:4/3;"></div>
+          <div class="visual-note">Before/After #2</div>
+        </div>
+        <div class="card glow">
+          <div class="visual-box" style="aspect-ratio:4/3;"></div>
+          <div class="visual-note">Before/After #3</div>
+        </div>
+      </div>
+
+      <p class="tiny" style="margin-top:12px;">
+        When you have photos, I can show you exactly how to add them (still can stay “single-file” if you want).
+      </p>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section id="booking" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>Request an Appointment</h2>
+        <p>Send preferred date/time. We confirm availability on WhatsApp. Deposit is paid after confirmation.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card glow">
+          <h3 style="margin:0 0 10px;">How it works</h3>
+          <ol class="muted" style="margin:0; padding-left:18px; line-height:1.7;">
+            <li>Request a date/time</li>
+            <li>We confirm what’s available by WhatsApp</li>
+            <li>You pay a deposit to secure your slot</li>
+          </ol>
+          <div style="height:12px;"></div>
+          <div class="card" style="background:rgba(0,0,0,.28); border-color:rgba(255,255,255,.10);">
+            <div style="font-weight:800;">Fast reply</div>
+            <div class="tiny" style="margin-top:6px;">
+              Make sure your WhatsApp number is correct. We’ll message you there.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <!-- BOOKING FORM -->
+          <!-- IMPORTANT:
+               1) Create a free Formspree form.
+               2) Replace FORM_ACTION_URL below with your Formspree endpoint.
+               Example: https://formspree.io/f/abcdwxyz
+          -->
+          <form id="bookingForm" action="FORM_ACTION_URL" method="POST">
+            <input type="hidden" name="_subject" value="New STier Customs booking request" />
+            <input type="hidden" name="_gotcha" style="display:none" />
+
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" required placeholder="e.g. Alex" />
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="whatsapp">WhatsApp number</label>
+                <input id="whatsapp" name="whatsapp" required placeholder="e.g. 07..." />
+              </div>
+              <div>
+                <label for="email">Email (optional)</label>
+                <input id="email" name="email" type="email" placeholder="you@email.com" />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="car">Car make/model</label>
+                <input id="car" name="car" required placeholder="e.g. BMW 3 Series" />
+              </div>
+              <div>
+                <label for="year">Year (optional)</label>
+                <input id="year" name="year" placeholder="e.g. 2018" />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="pkg">Package</label>
+                <select id="pkg" name="package" required>
+                  <option value="">Select…</option>
+                  <option>Starter (from £250)</option>
+                  <option>Premium (from £350)</option>
+                  <option>Ultimate (from £450)</option>
+                  <option>Not sure — advise me</option>
+                </select>
+              </div>
+              <div>
+                <label for="addons">Add-ons (optional)</label>
+                <select id="addons" name="addons">
+                  <option value="">None</option>
+                  <option>Shooting Stars</option>
+                  <option>Twinkle Module</option>
+                  <option>Custom Logo/Constellation</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div>
+                <label for="date">Preferred date</label>
+                <input id="date" name="preferred_date" type="date" required />
+              </div>
+              <div>
+                <label for="time">Preferred time</label>
+                <select id="time" name="preferred_time" required>
+                  <option value="">Select…</option>
+                  <option>Morning</option>
+                  <option>Afternoon</option>
+                  <option>Evening</option>
+                  <option>Any time</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" placeholder="Location, colour preference, questions…"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Send request</button>
+
+            <div class="tiny">
+              Deposit is paid only after we confirm your slot.
+              <br/>
+              If you haven’t added Formspree yet, the form won’t send.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deposit -->
+  <section id="deposit" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>Pay Deposit (after confirmation)</h2>
+        <p>Once we confirm your date/time, pay deposit to secure the slot.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card glow">
+          <h3 style="margin:0 0 10px;">How deposits work</h3>
+          <p class="muted" style="margin:0; line-height:1.7;">
+            You <b>request</b> an appointment first. After we confirm availability by WhatsApp,
+            you pay the deposit to lock it in.
+          </p>
+
+          <div style="height:12px;"></div>
+
+          <div class="card" style="background:rgba(0,0,0,.28); border-color:rgba(255,255,255,.10);">
+            <div style="font-weight:800;">Recommended deposits</div>
+            <div class="tiny" style="margin-top:6px;">
+              Starter: £50 • Premium: £75 • Ultimate: £100 (edit as you want)
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px;">Deposit payment button</h3>
+          <p class="muted" style="margin:0 0 12px; line-height:1.7;">
+            Create a <b>Stripe Payment Link</b> for your deposit and paste it below.
+            This keeps everything “single-file” and works on GitHub Pages.
+          </p>
+
+          <!-- IMPORTANT:
+               1) In Stripe → Payment Links → Create
+               2) Set it as your deposit (e.g. £50) OR create separate links for £50/£75/£100
+               3) Paste your Stripe link into STRIPE_LINK below
+          -->
+          <a id="depositBtn" class="btn btn-primary" href="STRIPE_LINK" target="_blank" rel="noreferrer">
+            Pay deposit (Stripe)
+          </a>
+
+          <p class="tiny" style="margin-top:10px;">
+            If you want 3 deposit buttons (50/75/100), tell me and I’ll add them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p>Quick answers to common questions.</p>
+      </div>
+
+      <div class="grid-2">
+        <details open>
+          <summary>How long does an install take?</summary>
+          <p>Most installs take 6–10 hours depending on the car and star count. Some vehicles may take longer.</p>
+        </details>
+        <details>
+          <summary>Do you remove the headliner?</summary>
+          <p>Yes. The headliner is removed, worked on safely, then refitted cleanly.</p>
+        </details>
+        <details>
+          <summary>Will it rattle or sag?</summary>
+          <p>If installed correctly, it shouldn’t. We aim for a secure refit and OEM-style finish.</p>
+        </details>
+        <details>
+          <summary>Can I choose the pattern?</summary>
+          <p>Yes — you can pick a layout or we can do a clean “factory” random pattern.</p>
+        </details>
+        <details>
+          <summary>Where are you based?</summary>
+          <p>West London / Heathrow area. Mobile or workshop options depending on the job.</p>
+        </details>
+        <details>
+          <summary>When do I pay the deposit?</summary>
+          <p>After we confirm your appointment date/time. Then deposit secures the slot.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="block">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Fastest reply is WhatsApp.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card glow">
+          <h3 style="margin:0 0 10px;">WhatsApp</h3>
+          <p class="muted" style="margin:0 0 12px; line-height:1.7;">
+            Tap the WhatsApp button (bottom right) or use the link below.
+          </p>
+          <a id="waLink" class="btn btn-primary" href="#" target="_blank" rel="noreferrer">Message STier Customs</a>
+          <p class="tiny" style="margin-top:10px;">
+            Number: <span style="font-family:var(--mono);">+44 7444 136890</span>
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px;">Business info</h3>
+          <p class="muted" style="margin:0; line-height:1.7;">
+            London based. Prices vary by vehicle/headliner size and add-ons. Booking requests are confirmed by message.
+          </p>
+          <div style="height:10px;"></div>
+          <p class="tiny">
+            Want Instagram/TikTok buttons added? Tell me your @ and I’ll plug them in.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-weight:800; font-size:18px;">STier Customs</div>
+          <div class="tiny" style="margin-top:8px;">Premium starlight headliner installs in London.</div>
+          <div class="disclaimer">
+            Disclaimer: Prices vary by vehicle/headliner size and add-ons. Deposits are paid after appointment confirmation.
+          </div>
+          <div class="tiny" style="margin-top:10px;">© <span id="year"></span> STier Customs</div>
+        </div>
+
+        <div class="links">
+          <div>
+            <div style="font-weight:750; color:rgba(255,255,255,.85);">Pages</div>
+            <a href="#products">Products</a>
+            <a href="#booking">Booking</a>
+            <a href="#deposit">Deposit</a>
+          </div>
+          <div>
+            <div style="font-weight:750; color:rgba(255,255,255,.85);">Support</div>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating button -->
+  <a class="wa" id="waFloat" href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+    WhatsApp
+  </a>
+
+  <script>
+    // ====== EDIT THESE TWO THINGS ONLY ======
+    const WHATSAPP_NUMBER = "447444136890"; // no +, no spaces
+    const WHATSAPP_MESSAGE = "Hi STier Customs 👋 I want a starlight headliner. Can I book in?";
+
+    // 1) Booking Formspree endpoint:
+    // Replace FORM_ACTION_URL in the form action attribute with your Formspree URL.
+    // 2) Stripe payment link:
+    // Replace STRIPE_LINK in the deposit button href with your Stripe Payment Link.
+    // =======================================
+
+    // WhatsApp links
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+    document.getElementById("waFloat").href = waUrl;
+    document.getElementById("waLink").href = waUrl;
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    btn?.addEventListener("click", () => {
+      const isOpen = menu.style.display === "block";
+      menu.style.display = isOpen ? "none" : "block";
+      btn.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    // Close mobile menu when clicking a link
+    menu?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        menu.style.display = "none";
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>
