@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STier Customs (STC) | Starlights • Ambient • CarPlay • Dashcams</title>
+  <meta name="description" content="STier Customs (STC) — premium starlight headliners, ambient lighting, CarPlay upgrades and dashcam installs in London. Opening discounts live now." />
+
+  <style>
+    :root{
+      --bg:#05060a;
+      --card:rgba(255,255,255,.06);
+      --line:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
+      --gold:#FFD48A;
+      --purple:#b06bff;
+      --cyan:#5ee7ff;
+      --ok:#25D366;
+      --shadow: 0 0 0 1px rgba(255,255,255,.10), 0 20px 80px rgba(0,0,0,.55);
+      --r16:16px; --r22:22px;
+      --max:1180px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 214, 138, 0.12), transparent 45%),
+        radial-gradient(circle at 82% 28%, rgba(176,107,255, 0.12), transparent 48%),
+        radial-gradient(circle at 50% 78%, rgba(94,231,255, 0.08), transparent 45%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), transparent 40%, rgba(255,255,255,0.02)),
+        var(--bg);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none;}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px;}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background:rgba(0,0,0,.65);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:12px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; min-width: 260px;}
+    .brand img{
+      width:42px; height:42px; border-radius:14px;
+      object-fit:cover;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 20px 60px rgba(176,107,255,.12);
+      background: rgba(255,255,255,.06);
+    }
+    .brand .name{font-weight:900; letter-spacing:-.02em; line-height:1.05;}
+    .brand .tag{font-size:12px; color:var(--muted2); margin-top:2px;}
+
+    nav{display:none; gap:16px; flex-wrap:wrap;}
+    nav a{font-size:14px; color:var(--muted);}
+    nav a:hover{color:var(--text);}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px; border-radius:14px;
+      font-weight:800; border:1px solid transparent;
+      background:transparent; cursor:pointer; user-select:none;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:active{transform: translateY(1px);}
+    .btn-primary{
+      background: linear-gradient(135deg, var(--gold), rgba(255,255,255,.25));
+      color:#07070a;
+      border-color: rgba(0,0,0,.12);
+    }
+    .btn-primary:hover{filter:brightness(1.05);}
+    .btn-ghost{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14);
+      color: var(--text);
+    }
+    .btn-ghost:hover{background: rgba(255,255,255,.09);}
+    .btn-glow{
+      background: linear-gradient(135deg, rgba(176,107,255,.35), rgba(94,231,255,.22));
+      border-color: rgba(255,255,255,.14);
+    }
+    .btn-glow:hover{filter:brightness(1.08);}
+
+    .hamburger{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+    }
+    .hamburger:hover{background: rgba(255,255,255,.10);}
+    .mobile{display:none; border-top:1px solid var(--line); padding:10px 0 14px;}
+    .mobile a{display:block; padding:10px 10px; border-radius:12px; color:var(--muted); font-size:14px;}
+    .mobile a:hover{background: rgba(255,255,255,.06); color:var(--text);}
+
+    /* Hero */
+    .hero{padding:26px 0 14px;}
+    .hero-grid{display:grid; grid-template-columns: 1.05fr .95fr; gap:18px; align-items:stretch;}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius:999px;
+      padding:7px 12px;
+      font-size:12px; color:var(--muted);
+    }
+    h1{margin:14px 0 0; font-size: 48px; line-height:1.05; letter-spacing:-.03em;}
+    .accent{
+      background: linear-gradient(135deg, var(--gold), rgba(176,107,255,.95), rgba(94,231,255,.95));
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent;
+    }
+    .lead{margin:12px 0 0; color:var(--muted); font-size:16.5px; line-height:1.65; max-width: 60ch;}
+    .hero-actions{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
+
+    .glass{
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r22);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-img{width:100%; aspect-ratio: 4/3; object-fit:cover; display:block; filter:saturate(1.08) contrast(1.05);}
+    .hero-badges{
+      position:absolute; left:14px; bottom:14px;
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .hero-card{padding:14px; position:relative;}
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      background: rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.88);
+      backdrop-filter: blur(8px);
+    }
+    .spark{
+      width:9px; height:9px; border-radius:999px;
+      background: radial-gradient(circle, rgba(255,255,255,.95), rgba(176,107,255,.55), transparent 70%);
+      box-shadow: 0 0 18px rgba(176,107,255,.35);
+    }
+    .stats{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    .stat{
+      padding:12px;
+      border-radius: var(--r16);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .stat .big{font-weight:900; font-size:16px;}
+    .stat .small{margin-top:6px; font-size:12px; color:var(--muted2);}
+
+    section{padding:22px 0;}
+    .head{margin-bottom:12px;}
+    .head h2{margin:0; font-size:28px; letter-spacing:-.02em;}
+    .head p{margin:8px 0 0; color:var(--muted);}
+
+    .grid-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;}
+    .grid-3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px;}
+
+    .card{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r22);
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(circle at 25% 10%, rgba(176,107,255,.20), transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(94,231,255,.14), transparent 45%),
+        radial-gradient(circle at 60% 90%, rgba(255,214,138,.10), transparent 45%);
+      opacity:.55;
+      pointer-events:none;
+    }
+    .card > *{ position:relative; }
+
+    .service-title{margin:0 0 8px; font-weight:900;}
+    .muted{color:var(--muted);}
+
+    /* Product cards */
+    .prod{display:flex; flex-direction:column; gap:10px; padding:0; overflow:hidden;}
+    .prod-img{width:100%; height: 190px; object-fit:cover; display:block; filter:saturate(1.08) contrast(1.05); border-bottom: 1px solid rgba(255,255,255,.10);}
+    .prod-body{ padding:14px 16px 16px; }
+    .prod-top{display:flex; align-items:flex-start; justify-content:space-between; gap:10px;}
+    .prod-name{margin:0; font-size:18px; font-weight:950; letter-spacing:-.01em;}
+    .tag-sale{
+      font-size:12px; padding:6px 10px; border-radius:999px;
+      background: rgba(255,214,138,.15);
+      border:1px solid rgba(255,214,138,.35);
+      color: rgba(255,214,138,.95);
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .price-row{margin-top:10px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+    .was{color: rgba(255,255,255,.55); text-decoration: line-through; font-family: var(--mono); font-size: 13px;}
+    .now{font-family: var(--mono); font-size: 20px; font-weight: 950; color: var(--gold);}
+    .from{font-family: var(--mono); font-size: 18px; font-weight: 950; color: var(--gold);}
+    .prod ul{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:8px; color: var(--muted); font-size: 14px; line-height:1.45;}
+    .li{display:flex; gap:10px;}
+    .dot{width:9px; height:9px; border-radius:999px; background: rgba(255,255,255,.35); margin-top:6px; flex:0 0 auto;}
+    .prod-actions{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:12px;
+    }
+    .gallery .bigimg{
+      width:100%;
+      height: 380px;
+      object-fit:cover;
+      border-radius: var(--r22);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+    }
+    .gallery .stack{display:grid; gap:12px;}
+    .gallery .stack img{
+      width:100%;
+      height: 184px;
+      object-fit:cover;
+      border-radius: var(--r22);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    /* Booking */
+    form{display:grid; gap:12px;}
+    label{font-size:13px; color: rgba(255,255,255,.85); display:block; margin-bottom:6px;}
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.35);
+      color: var(--text);
+      outline:none;
+      font-family:inherit;
+    }
+    input:focus, select:focus, textarea:focus{ border-color: rgba(255,255,255,.24); }
+    textarea{ resize:vertical; min-height:110px; }
+    .form-2{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px;}
+    .tiny{font-size:12px; color: var(--muted2); line-height:1.55;}
+
+    /* FAQ */
+    details{
+      border-radius: var(--r22);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:12px 14px;
+    }
+    details summary{cursor:pointer; font-weight:900; color: rgba(255,255,255,.90);}
+    details p{margin:10px 0 0; color: var(--muted); line-height:1.65;}
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--line);
+      background: rgba(0,0,0,.55);
+      padding:28px 0 44px;
+      margin-top:10px;
+    }
+    .footer-grid{display:grid; grid-template-columns: 1.25fr .75fr; gap:14px;}
+    .links{display:flex; gap:36px; flex-wrap:wrap;}
+    .links a{display:block; color:var(--muted); font-size:14px; margin:8px 0;}
+    .links a:hover{color:var(--text);}
+
+    /* WhatsApp float */
+    .wa{
+      position:fixed; right:16px; bottom:16px; z-index:60;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px;
+      border-radius:999px;
+      background: var(--ok);
+      color:#07120a;
+      font-weight:950;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+      border:1px solid rgba(0,0,0,.10);
+    }
+    .wa:hover{filter:brightness(1.06);}
+
+    @media (min-width: 981px){
+      nav{display:flex;}
+      .hamburger{display:none;}
+      .mobile{display:none !important;}
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr;}
+      h1{font-size: 40px;}
+      .grid-3{grid-template-columns: 1fr;}
+      .grid-2{grid-template-columns: 1fr;}
+      .stats{grid-template-columns: 1fr;}
+      .gallery{grid-template-columns: 1fr;}
+      .gallery .bigimg{height: 280px;}
+      .gallery .stack img{height: 180px;}
+      .footer-grid{grid-template-columns: 1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a class="brand" href="#top">
+          <img src="IMG_2484.jpeg" alt="STC logo" />
+          <div>
+            <div class="name">STier Customs <span style="opacity:.65;font-weight:800;">(STC)</span></div>
+            <div class="tag">Starlights • Ambient • CarPlay • Dashcams • London</div>
+          </div>
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#products">Products</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#booking">Booking</a>
+          <a href="#deposit">Deposit</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn btn-primary" href="#booking">Book now</a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-opacity=".85" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Booking</a>
+        <a href="#deposit">Deposit</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="pill">West London / Heathrow area • Mobile / Workshop • Premium finish</div>
+          <h1>Make your car feel <span class="accent">next level</span>.</h1>
+          <p class="lead">
+            STC installs premium <b>starlight headliners</b>, <b>ambient lighting</b>, <b>CarPlay screen upgrades</b>,
+            and <b>dashcams</b>. Opening discounts live right now.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">See discounts</a>
+            <a class="btn btn-ghost" href="#booking">Request appointment</a>
+            <a class="btn btn-glow" href="#deposit">Pay deposit</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="big">Launch deals</div>
+              <div class="small">Discount look with real prices</div>
+            </div>
+            <div class="stat">
+              <div class="big">Clean install</div>
+              <div class="small">OEM style finish + tidy wiring</div>
+            </div>
+            <div class="stat">
+              <div class="big">Fast reply</div>
+              <div class="small">WhatsApp: +44 7444 136890</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass hero-card">
+          <img class="hero-img" src="IMG_2475.jpeg" alt="Starlight headliner install" />
+          <div class="hero-badges">
+            <span class="badge"><span class="spark"></span> STC Starlights</span>
+            <span class="badge"><span class="spark"></span> Ambient LEDs</span>
+            <span class="badge"><span class="spark"></span> CarPlay Upgrades</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="services">
+    <div class="container">
+      <div class="head">
+        <h2>What we do</h2>
+        <p>Premium upgrades that change the whole vibe of your car.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 class="service-title">Starlight Headliners</h3>
+          <p class="muted">Custom star patterns, clean finish, and options like shooting stars & twinkle.</p>
+        </div>
+        <div class="card">
+          <h3 class="service-title">Ambient Lighting</h3>
+          <p class="muted">Door + dash lighting, clean wiring, smooth glow and full colour control.</p>
+        </div>
+        <div class="card">
+          <h3 class="service-title">Tech Upgrades</h3>
+          <p class="muted">CarPlay screens + dashcams installed tidy with proper cable routing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+      <div class="head">
+        <h2>Opening discounts</h2>
+        <p>Launch prices right now. Message to confirm your vehicle.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card prod">
+          <img class="prod-img" src="IMG_2475.jpeg" alt="Starlight roof" />
+          <div class="prod-body">
+            <div class="prod-top">
+              <h3 class="prod-name">Starlights (600 pieces)</h3>
+              <span class="tag-sale">LAUNCH DEAL</span>
+            </div>
+            <div class="price-row">
+              <span class="was">£450.00</span>
+              <span class="now">£379.99</span>
+            </div>
+            <ul>
+              <li class="li"><span class="dot"></span><span>Dense 600-piece look</span></li>
+              <li class="li"><span class="dot"></span><span>Clean OEM finish</span></li>
+              <li class="li"><span class="dot"></span><span>Custom pattern available</span></li>
+            </ul>
+            <div class="prod-actions">
+              <a class="btn btn-primary" href="#booking">Book request</a>
+              <a class="btn btn-ghost" href="#contact">Ask on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card prod">
+          <img class="prod-img" src="IMG_2476.jpeg" alt="Ambient lighting" />
+          <div class="prod-body">
+            <div class="prod-top">
+              <h3 class="prod-name">Ambient Lighting</h3>
+              <span class="tag-sale">LAUNCH DEAL</span>
+            </div>
+            <div class="price-row">
+              <span class="was">£350.00</span>
+              <span class="now">£279.99</span>
+            </div>
+            <ul>
+              <li class="li"><span class="dot"></span><span>Dash + doors glow</span></li>
+              <li class="li"><span class="dot"></span><span>Clean wiring & fit</span></li>
+              <li class="li"><span class="dot"></span><span>Colour control options</span></li>
+            </ul>
+            <div class="prod-actions">
+              <a class="btn btn-primary" href="#booking">Book request</a>
+              <a class="btn btn-ghost" href="#contact">Ask on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card prod">
+          <img class="prod-img" src="IMG_2482.jpeg" alt="CarPlay screen upgrade" />
+          <div class="prod-body">
+            <div class="prod-top">
+              <h3 class="prod-name">Screen Upgrade (CarPlay)</h3>
+              <span class="tag-sale">FROM</span>
+            </div>
+            <div class="price-row">
+              <span class="from">from £250</span>
+            </div>
+            <ul>
+              <li class="li"><span class="dot"></span><span>Depends on car + screen type</span></li>
+              <li class="li"><span class="dot"></span><span>Apple CarPlay / Android Auto options</span></li>
+              <li class="li"><span class="dot"></span><span>Clean fitment & setup</span></li>
+            </ul>
+            <div class="prod-actions">
+              <a class="btn btn-primary" href="#booking">Book request</a>
+              <a class="btn btn-ghost" href="#contact">Ask on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card prod">
+          <img class="prod-img" src="IMG_2481.jpeg" alt="Dashcam install" />
+          <div class="prod-body">
+            <div class="prod-top">
+              <h3 class="prod-name">Dashcam Install</h3>
+              <span class="tag-sale">LAUNCH DEAL</span>
+            </div>
+            <div class="price-row">
+              <span class="was">£125.00</span>
+              <span class="now">£99.99</span>
+            </div>
+            <ul>
+              <li class="li"><span class="dot"></span><span>Tidy cable routing</span></li>
+              <li class="li"><span class="dot"></span><span>Hardwire options available</span></li>
+              <li class="li"><span class="dot"></span><span>Clean placement & setup</span></li>
+            </ul>
+            <div class="prod-actions">
+              <a class="btn btn-primary" href="#booking">Book request</a>
+              <a class="btn btn-ghost" href="#contact">Ask on WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="tiny" style="margin-top:10px;">
+        Prices can vary by vehicle and options. Opening deals subject to availability.
+      </p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="head">
+        <h2>Gallery</h2>
+        <p>Your images, clean layout.</p>
+      </div>
+
+      <div class="gallery">
+        <img class="bigimg" src="IMG_2475.jpeg" alt="Starlight roof photo" />
+        <div class="stack">
+          <img src="IMG_2476.jpeg" alt="Ambient lighting photo" />
+          <img src="IMG_2482.jpeg" alt="CarPlay screen photo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="container">
+      <div class="head">
+        <h2>Request an appointment</h2>
+        <p>Pick a date/time — we confirm availability on WhatsApp. Deposit is paid after confirmation.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-weight:950;">How it works</h3>
+          <ol class="muted" style="margin:0; padding-left:18px; line-height:1.8;">
+            <li>Send booking request</li>
+            <li>We confirm a slot that’s available</li>
+            <li>You pay deposit to lock it in</li>
+          </ol>
+
+          <div style="margin-top:12px; padding:12px; border-radius:16px; border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.30);">
+            <div style="font-weight:950;">Fastest reply</div>
+            <div class="tiny" style="margin-top:6px;">Make sure your WhatsApp number is correct — we message you there.</div>
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="#contact">WhatsApp us</a>
+            <a class="btn btn-ghost" href="#deposit">Deposit info</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <form action="FORM_ACTION_URL" method="POST">
+            <input type="hidden" name="_subject" value="New STC booking request" />
+            <input type="hidden" name="_gotcha" style="display:none" />
+
+            <div class="form-2">
+              <div>
+                <label>Full name</label>
+                <input name="name" required placeholder="e.g. Alex" />
+              </div>
+              <div>
+                <label>WhatsApp number</label>
+                <input name="whatsapp" required placeholder="07..." />
+              </div>
+            </div>
+
+            <div class="form-2">
+              <div>
+                <label>Car make/model</label>
+                <input name="car" required placeholder="e.g. BMW 3 Series" />
+              </div>
+              <div>
+                <label>Service</label>
+                <select name="service" required>
+                  <option value="">Select…</option>
+                  <option>Starlights (600 pieces) — £379.99</option>
+                  <option>Ambient Lighting — £279.99</option>
+                  <option>Screen Upgrade (CarPlay) — from £250</option>
+                  <option>Dashcam — £99.99</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-2">
+              <div>
+                <label>Preferred date</label>
+                <input name="preferred_date" type="date" required />
+              </div>
+              <div>
+                <label>Preferred time</label>
+                <select name="preferred_time" required>
+                  <option value="">Select…</option>
+                  <option>Morning</option>
+                  <option>Afternoon</option>
+                  <option>Evening</option>
+                  <option>Any time</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label>Notes</label>
+              <textarea name="notes" placeholder="Location, colour preference, any questions…"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Send booking request</button>
+            <div class="tiny">
+              Replace <span style="font-family:var(--mono);">FORM_ACTION_URL</span> with your Formspree link.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="deposit">
+    <div class="container">
+      <div class="head">
+        <h2>Deposits (after confirmation)</h2>
+        <p>Once we confirm your date/time, you pay deposit to secure the appointment.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-weight:950;">Simple rule</h3>
+          <p class="muted" style="margin:0; line-height:1.7;">
+            We confirm availability first. After that, deposit locks your slot.
+          </p>
+          <div style="margin-top:12px; padding:12px; border-radius:16px; border:1px solid rgba(255,255,255,.10); background:rgba(0,0,0,.30);">
+            <div style="font-weight:950;">Stripe deposit link</div>
+            <div class="tiny" style="margin-top:6px;">Create a Stripe Payment Link and paste it into the button below.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-weight:950;">Pay deposit</h3>
+          <p class="muted" style="margin:0 0 12px; line-height:1.7;">Only pay after STC confirms your appointment.</p>
+
+          <a class="btn btn-primary" href="STRIPE_LINK" target="_blank" rel="noreferrer">Pay deposit (Stripe)</a>
+
+          <div class="tiny" style="margin-top:10px;">
+            Replace <span style="font-family:var(--mono);">STRIPE_LINK</span> with your Stripe Payment Link.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="head">
+        <h2>FAQ</h2>
+        <p>Quick answers.</p>
+      </div>
+
+      <div class="grid-2">
+        <details open>
+          <summary>Do I pay deposit first?</summary>
+          <p>No. You request an appointment first. After we confirm a slot, you pay the deposit to secure it.</p>
+        </details>
+        <details>
+          <summary>How long do installs take?</summary>
+          <p>Depends on the service. Starlights usually take most of the day. We’ll confirm timing with your booking.</p>
+        </details>
+        <details>
+          <summary>Do prices change by car?</summary>
+          <p>Yes, some cars take longer or need different parts. The listed prices are launch offers and subject to your vehicle.</p>
+        </details>
+        <details>
+          <summary>Where are you based?</summary>
+          <p>West London / Heathrow area. Mobile or workshop options depending on the job.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="head">
+        <h2>Contact</h2>
+        <p>Fastest reply is WhatsApp.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-weight:950;">WhatsApp</h3>
+          <p class="muted" style="margin:0 0 12px; line-height:1.7;">Tap below to message STC.</p>
+          <a class="btn btn-primary" id="waLink" href="#" target="_blank" rel="noreferrer">Message STC</a>
+          <div class="tiny" style="margin-top:10px;">Number: <span style="font-family:var(--mono);">+44 7444 136890</span></div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-weight:950;">Brand vibe</h3>
+          <p class="muted" style="margin:0; line-height:1.7;">
+            Premium upgrades. Clean installs. Good service.
+            Add Instagram/TikTok buttons whenever you want.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-weight:950; font-size:18px;">STier Customs <span style="opacity:.65;">(STC)</span></div>
+          <div class="tiny" style="margin-top:8px;">Starlights • Ambient • CarPlay • Dashcams • London</div>
+          <div class="tiny" style="margin-top:10px; color:rgba(255,255,255,.45);">
+            Disclaimer: Prices may vary by vehicle/options. Deposits are paid after appointment confirmation.
+          </div>
+          <div class="tiny" style="margin-top:10px;">© <span id="year"></span> STC</div>
+        </div>
+
+        <div class="links">
+          <div>
+            <div style="font-weight:900; color:rgba(255,255,255,.85);">Pages</div>
+            <a href="#products">Products</a>
+            <a href="#booking">Booking</a>
+            <a href="#deposit">Deposit</a>
+          </div>
+          <div>
+            <div style="font-weight:900; color:rgba(255,255,255,.85);">Support</div>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa" id="waFloat" href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">WhatsApp</a>
+
+  <script>
+    const WHATSAPP_NUMBER = "447444136890";
+    const WHATSAPP_MESSAGE = "Hi STC 👋 I want to book in. Can you confirm availability?";
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+    document.getElementById("waFloat").href = waUrl;
+    document.getElementById("waLink").href = waUrl;
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const btn = document.getElementById("menuBtn");
+    const menu = document.getElementById("mobileMenu");
+    btn?.addEventListener("click", () => {
+      const open = menu.style.display === "block";
+      menu.style.display = open ? "none" : "block";
+      btn.setAttribute("aria-expanded", String(!open));
+    });
+    menu?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      menu.style.display = "none";
+      btn.setAttribute("aria-expanded","false");
+    }));
+  </script>
+</body>
+</html>
